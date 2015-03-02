@@ -250,6 +250,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position', 'ui.bootstrap
         model = parserResult.modelMapper(originalScope, locals);
         $setModelValue(originalScope, model);
         modelCtrl.$setValidity('editable', true);
+        modelCtrl.$setValidity('parse', true);
 
         onSelectCallback(originalScope, {
           $item: item,

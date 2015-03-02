@@ -625,6 +625,18 @@ describe('typeahead tests', function () {
       $(match).click();
       $scope.$digest();
     });
+
+    it('issue #3311 - should trigger validation if filter value equal to list value', function() {
+
+      var element = prepareInputEl('<form name="form"><input name="input" ng-model="result" typeahead="item for item in source | filter:$viewValue"></form>');
+
+      changeInputValueTo(element, 'foo');
+
+      var match = $(findMatches(element)[0]).find('a')[0];
+      $(match).click();
+
+      expect($scope.form.input.$error.parse).toBeUndefined();
+    });
   });
 
   describe('input formatting', function () {
